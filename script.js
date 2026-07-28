@@ -1,7 +1,7 @@
 // PASSCODE CHECK
 function checkPass(){
   let pass = document.getElementById('passInput').value;
-  if(pass === "8080"){
+  if(pass === "1"){
     document.getElementById('lockScreen').style.display = 'none';
     document.getElementById('mainContent').classList.remove('hidden');
     startHearts(); // হার্ট চালু
