@@ -23,19 +23,22 @@ btn.onclick = function () {
     letter.style.display = "block";
 };
 
-constconst images = [
-    "images/IMG-20260728-WA0004.jpg",
-    "images/IMG-20260728-WA0005.jpg"
+const images = [
+  "images/IMG-20260728-WA0004.jpg",
+  "images/IMG-20260728-WA0005.jpg"
 ];
 
 let current = 0;
 const slider = document.getElementById("slider");
 
+// প্রথম ছবি দেখাও
+slider.src = images[current];
+
+// প্রতি ৩ মিনিট পর ছবি বদলাবে
 setInterval(() => {
-    current++;
-    if (current >= images.length) current = 0;
+    current = (current + 1) % images.length;
     slider.src = images[current];
-}, 3000);
+}, 180000);
 
 const startDate = new Date("September 21, 2022");
 
