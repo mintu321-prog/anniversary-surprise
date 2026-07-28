@@ -1,54 +1,54 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>For My DOLA ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600&display=swap" rel="stylesheet">
-<style>
-  *{margin:0;padding:0;box-sizing:border-box}
-  body{margin:0;background:#000;color:#fff;font-family:'Hind Siliguri',sans-serif;overflow:hidden}
-  
-  /* লোডিং */
-  #loading{position:fixed;top:0;left:0;width:100%;height:100%;background:#ff4d6d;display:flex;justify-content:center;align-items:center;font-size:28px;z-index:999}
-  
-  /* Passcode Box */
-  #passBox{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.9);display:flex;justify-content:center;align-items:center;z-index:998}
-  .pass-card{background:rgba(255,255,255,0.1);backdrop-filter:blur(15px);padding:30px;border-radius:20px;text-align:center}
-  .pass-card input{padding:12px;font-size:20px;border:none;border-radius:10px;text-align:center;width:150px;margin:10px}
-  .pass-card button{background:#ff4d6d;border:none;padding:12px 25px;border-radius:10px;color:#fff;font-size:18px;cursor:pointer}
-  .error{color:#ff4d6d;margin-top:10px;display:none}
-  
-  /* Main Content - প্রথমে লুকানো থাকবে */
-  #main{display:none}
-  
-  /* ভাসমান হার্ট */
-  .heart{position:fixed;width:20px;height:20px;background:red;transform:rotate(45deg);animation:float 6s infinite}
-  .heart:before,.heart:after{content:'';width:20px;height:20px;position:absolute;border-radius:50%;background:red}
-  .heart:before{top:-10px}.heart:after{left:-10px}
-  @keyframes float{0%{bottom:-20px;opacity:1}100%{bottom:100%;opacity:0}}
-  
-  /* গ্লাস কার্ড */
-  .container{display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
-  .glass{background:rgba(255,255,255,0.1);backdrop-filter:blur(15px);border:1px solid rgba(255,255,255,0.2);padding:30px;border-radius:25px;text-align:center;max-width:500px}
-  
-  /* ছবি */
-  .pic{width:300px;height:300px;border-radius:20px;object-fit:cover;margin:15px auto;border:3px solid #ff4d6d}
-  
-  /* চিঠি - ক্লিক করলে খুলবে */
-  .letter-box{margin:20px 0;cursor:pointer}
-  .letter-btn{background:#ff4d6d;border:none;padding:12px 25px;border-radius:50px;color:#fff;font-size:16px;cursor:pointer}
-  .letter{font-size:18px;line-height:1.8;margin:20px 0;text-align:left;display:none;animation:open 1s}
-  @keyframes open{from{opacity:0;transform:scale(0.8)} to{opacity:1;transform:scale(1)}}
-  
-  /* I LOVE YOU অ্যানিমেশন */
-  .love-text{font-size:40px;color:#ff4d6d;animation:beat 1s infinite;margin:20px 0}
-  @keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.2)}}
-  
-  /* ফায়ারওয়ার্কস */
-  canvas{position:fixed;top:0;left:0;z-index:-1}
-</style>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Anniversary ❤️</title>
+<link rel="stylesheet" href="style.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 </head>
 <body>
-<div id="loading">Loading Our Love... ❤️</div>
 
-<!-- ধাপ 
+<!-- ধাপ 1: LOCK SCREEN -->
+<div id="lockScreen">
+  <div class="lock-box">
+    <h2>🔒 Secret Surprise</h2>
+    <p>Only For DOLA ❤️</p>
+    <input type="password" id="passInput" placeholder="Enter Passcode" maxlength="4">
+    <button onclick="checkPass()">Unlock</button>
+    <p id="errorMsg">Wrong Code! Try 8080</p>
+  </div>
+</div>
+
+<div class="hearts"></div>
+
+<!-- ধাপ 2: MAIN CONTENT - প্রথমে লুকানো -->
+<div id="mainContent" class="hidden">
+  <section class="hero">
+    <h1>Happy Anniversary ❤️</h1>
+    <h2>DOLA & RIYAJ</h2>
+    <p id="typing"></p>
+    <button id="openBtn"> Open My Heart 💌 </button>
+  </section>
+
+  <section id="letter" class="hidden">
+    <h1>For My Love ❤️</h1>
+    <p> 
+      Dear DOLA, <br><br>
+      Every heartbeat reminds me of you. <br>
+      Thank you for making my life beautiful. <br>
+      No matter what happens, I promise to love you forever. <br><br>
+      Happy Anniversary ❤️
+    </p>
+    <div class="gallery">
+      <img src="images/IMG-20260728-WA0004.jpg" id="slider">
+    </div>
+    <h3 id="counter"></h3>
+  </section>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
