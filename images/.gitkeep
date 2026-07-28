@@ -1,1 +1,4 @@
-
+const images = [
+    "images/pic1.jpg",
+    "images/pic2.jpg"
+];
