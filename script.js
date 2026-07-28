@@ -34,11 +34,11 @@ const slider = document.getElementById("slider");
 // প্রথম ছবি দেখাও
 slider.src = images[current];
 
-// প্রতি ৩ মিনিট পর ছবি বদলাবে
+// প্রতি ১ মিনিট পর ছবি বদলাবে
 setInterval(() => {
     current = (current + 1) % images.length;
     slider.src = images[current];
-}, 180000);
+}, 60000);
 
 const startDate = new Date("September 21, 2022");
 
