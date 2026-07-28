@@ -23,9 +23,9 @@ btn.onclick = function () {
     letter.style.display = "block";
 };
 
-const images = [
-    "images/pic1.jpg",
-    "images/pic2.jpg"
+constconst images = [
+    "images/IMG-20260728-WA0004.jpg",
+    "images/IMG-20260728-WA0005.jpg"
 ];
 
 let current = 0;
