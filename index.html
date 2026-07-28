@@ -4,8 +4,48 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Happy Anniversary ❤️</title>
-<link rel="stylesheet" href="style.css">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
+  body{background:#000;color:#fff;overflow-x:hidden}
+  
+  /* LOCK SCREEN */
+  #lockScreen{
+    position:fixed; top:0; left:0; width:100%; height:100%;
+    background:linear-gradient(135deg,#ff4d6d,#ff8fa3);
+    display:flex; justify-content:center; align-items:center; z-index:9999;
+  }
+  .lock-box{
+    background:rgba(255,255,255,0.15); backdrop-filter:blur(15px);
+    padding:40px; border-radius:20px; text-align:center; color:#fff;
+    border:1px solid rgba(255,255,255,0.3);
+  }
+  .lock-box input{
+    padding:12px; font-size:18px; border:none; border-radius:10px;
+    text-align:center; margin:15px 0; width:200px; display:block;
+  }
+  .lock-box button{
+    background:#fff; color:#ff4d6d; border:none; padding:12px 30px;
+    border-radius:10px; font-size:16px; font-weight:700; cursor:pointer;
+  }
+  #errorMsg{color:yellow; margin-top:10px; display:none}
+  .hidden{display:none}
+  
+  /* MAIN */
+  .hero{text-align:center;padding:100px 20px}
+  .hero h1{font-size:40px;color:#ff4d6d}
+  .hero h2{font-size:24px;margin:10px 0}
+  #openBtn{background:#ff4d6d;color:#fff;border:none;padding:15px 30px;border-radius:50px;font-size:18px;cursor:pointer;margin-top:20px}
+  #letter{text-align:center;padding:50px 20px}
+  .gallery img{width:300px;border-radius:20px;margin:20px auto;border:3px solid #ff4d6d}
+  
+  /* HEARTS */
+  .hearts{position:fixed; width:100%; height:100%; top:0; left:0; pointer-events:none; z-index:1}
+  .heart{position:absolute;width:20px;height:20px;background:red;transform:rotate(45deg);animation:float 6s infinite linear}
+  .heart:before,.heart:after{content:'';width:20px;height:20px;position:absolute;border-radius:50%;background:red}
+  .heart:before{top:-10px}.heart:after{left:-10px}
+  @keyframes float{0%{bottom:-20px;opacity:1}100%{bottom:100%;opacity:0}}
+</style>
 </head>
 <body>
 
@@ -47,6 +87,50 @@
   </section>
 </div>
 
-<script src="script.js"></script>
+<script>
+// 1. PASSCODE CHECK - 8080
+document.getElementById('unlockBtn').onclick = checkPass;
+document.getElementById('passInput').onkeypress = function(e){
+  if(e.key === 'Enter') checkPass();
+};
+
+function checkPass(){
+  let pass = document.getElementById('passInput').value;
+  if(pass === "8080"){
+    document.getElementById('lockScreen').style.display = 'none';
+    document.getElementById('mainContent').classList.remove('hidden');
+    startHearts();
+    startCounter();
+  }else{
+    document.getElementById('errorMsg').style.display = 'block';
+  }
+}
+
+// 2. OPEN LETTER BUTTON
+document.getElementById('openBtn').onclick = function(){
+  document.getElementById('letter').classList.remove('hidden');
+  this.style.display='none';
+}
+
+// 3. COUNTER 21 Sep 2022
+function startCounter(){
+  let start = new Date("2022-09-21");
+  setInterval(()=>{
+    let diff = Math.floor((new Date()-start)/86400000)
+    document.getElementById('counter').innerText = diff + " Days Together ❤️"
+  },1000)
+}
+
+// 4. FLOATING HEARTS
+function startHearts(){
+  setInterval(()=>{
+    let h = document.createElement('div');
+    h.className='heart';
+    h.style.left = Math.random()*100+'%';
+    document.querySelector('.hearts').appendChild(h);
+    setTimeout(()=>h.remove(),6000)
+  },300)
+}
+</script>
 </body>
 </html>
