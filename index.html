@@ -1,101 +1,76 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Anniversary ❤️</title>
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+<title>For DOLA ❤️</title>
 <style>
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif}
-  body{background:#000;color:#fff;overflow-x:hidden}
-  #lockScreen{position:fixed; top:0; left:0; width:100%; height:100%;background:linear-gradient(135deg,#ff4d6d,#ff8fa3);display:flex; justify-content:center; align-items:center; z-index:9999;}
- .lock-box{background:rgba(255,255,255,0.15); backdrop-filter:blur(15px);padding:40px; border-radius:20px; text-align:center; color:#fff;border:1px solid rgba(255,255,255,0.3);}
- .lock-box input{padding:12px; font-size:18px; border:none; border-radius:10px;text-align:center; margin:15px 0; width:200px; display:block;}
- .lock-box button{background:#fff; color:#ff4d6d; border:none; padding:12px 30px;border-radius:10px; font-size:16px; font-weight:700; cursor:pointer;}
-  #errorMsg{color:yellow; margin-top:10px; display:none}
- .hidden{display:none}
- .hero{text-align:center;padding:100px 20px}
- .hero h1{font-size:40px;color:#ff4d6d}
-  #openBtn{background:#ff4d6d;color:#fff;border:none;padding:15px 30px;border-radius:50px;font-size:18px;cursor:pointer;margin-top:20px}
-  #letter{text-align:center;padding:50px 20px}
-  
-  /* স্লাইডশো */
- .gallery{width:300px;height:300px;margin:20px auto;border-radius:20px;overflow:hidden;position:relative;border:3px solid #ff4d6d}
- .gallery img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1s ease-in-out}
- .gallery img.active{opacity:1}
-  
- .hearts{position:fixed; width:100%; height:100%; top:0; left:0; pointer-events:none; z-index:1}
- .heart{position:absolute;width:20px;height:20px;background:red;transform:rotate(45deg);animation:float 6s infinite linear}
- .heart:before,.heart:after{content:'';width:20px;height:20px;position:absolute;border-radius:50%;background:red}
- .heart:before{top:-10px}.heart:after{left:-10px}
-  @keyframes float{0%{bottom:-20px;opacity:1}100%{bottom:100%;opacity:0}}
+body{background:#000;color:#fff;font-family:Poppins;text-align:center}
+#lockScreen{position:fixed;width:100%;height:100%;background:pink;display:flex;justify-content:center;align-items:center;z-index:999}
+.lock-box{background:rgba(255,255,255,0.2);padding:30px;border-radius:20px}
+.hidden{display:none}
+.gallery{width:300px;height:300px;margin:20px auto;border:3px solid #ff4d6d;border-radius:20px;overflow:hidden;position:relative}
+.gallery img{position:absolute;width:100%;height:100%;object-fit:cover;opacity:0;transition:1s}
+.gallery img.active{opacity:1}
+#openBtn{padding:15px 30px;background:#ff4d6d;color:#fff;border:none;border-radius:50px;font-size:18px;cursor:pointer}
 </style>
 </head>
 <body>
 
+<!-- LOCK -->
 <div id="lockScreen">
   <div class="lock-box">
-    <h2>🔒 Secret Surprise</h2>
-    <p>Only For DOLA ❤️</p>
-    <input type="password" id="passInput" placeholder="Enter Passcode 8080" maxlength="4">
+    <h2>🔒 Passcode: 8080</h2>
+    <input type="password" id="passInput">
     <button id="unlockBtn">Unlock</button>
-    <p id="errorMsg">Wrong Code! Try 8080</p>
   </div>
 </div>
 
-<div class="hearts"></div>
-
+<!-- MAIN -->
 <div id="mainContent" class="hidden">
-  <section class="hero">
-    <h1>Happy Anniversary ❤️</h1>
-    <h2>DOLA & RIYAJ</h2>
-    <button id="openBtn"> Open My Heart 💌 </button>
-  </section>
+  <h1>Happy Anniversary DOLA & RIYAJ ❤️</h1>
+  <button id="openBtn">Open My Heart 💌</button>
 
-  <section id="letter" class="hidden">
-    <h1>For My Love ❤️</h1>
-    <p> Dear DOLA, <br><br> Every heartbeat reminds me of you. <br> Thank you for making my life beautiful. <br> No matter what happens, I promise to love you forever. <br><br> Happy Anniversary ❤️ </p>
-    
-    <!-- 10 sec পর চেঞ্জ হবে -->
+  <div id="letter" class="hidden">
+    <p>Dear DOLA... I love you forever ❤️</p>
+    <!-- PIC এখানে -->
     <div class="gallery">
-      <img src="./images/IMG-20260728-WA0004.jpg" class="active">
-      <img src="./images/IMG-20260728-WA0005.jpg">
+      <img src="images/IMG-20260728-WA0004.jpg" class="active">
+      <img src="images/IMG-20260728-WA0005.jpg">
     </div>
     <h3 id="counter"></h3>
-  </section>
+  </div>
 </div>
 
 <script>
-// PASSCODE
-document.getElementById('unlockBtn').onclick = checkPass;
-document.getElementById('passInput').onkeypress = function(e){ if(e.key === 'Enter') checkPass(); };
-function checkPass(){
-  let pass = document.getElementById('passInput').value;
-  if(pass === "8080"){
-    document.getElementById('lockScreen').style.display = 'none';
+// 1. Passcode 8080
+document.getElementById('unlockBtn').onclick = function(){
+  if(document.getElementById('passInput').value === "8080"){
+    document.getElementById('lockScreen').style.display='none';
     document.getElementById('mainContent').classList.remove('hidden');
-    startHearts(); startCounter(); startSlideshow(); // স্লাইডশো চালু
-  }else{ document.getElementById('errorMsg').style.display = 'block'; }
+    startSlideshow(); startCounter();
+  }
 }
-
-// OPEN LETTER
-document.getElementById('openBtn').onclick = function(){ document.getElementById('letter').classList.remove('hidden'); this.style.display='none'; }
-
-// COUNTER
-function startCounter(){ let start = new Date("2022-09-21"); setInterval(()=>{ let diff = Math.floor((new Date()-start)/86400000) document.getElementById('counter').innerText = diff + " Days Together ❤️" },1000) }
-
-// HEARTS
-function startHearts(){ setInterval(()=>{ let h = document.createElement('div'); h.className='heart'; h.style.left = Math.random()*100+'%'; document.querySelector('.hearts').appendChild(h); setTimeout(()=>h.remove(),6000) },300) }
-
-// 10 SEC SLIDESHOW
-let currentSlide = 0;
-function startSlideshow(){
-  let slides = document.querySelectorAll('.gallery img');
+// 2. Open Letter
+document.getElementById('openBtn').onclick = function(){
+  document.getElementById('letter').classList.remove('hidden');
+  this.style.display='none';
+}
+// 3. Counter
+function startCounter(){
+  let start = new Date("2022-09-21");
   setInterval(()=>{
-    slides[currentSlide].classList.remove('active'); // আগেরটা হাইড
-    currentSlide = (currentSlide + 1) % slides.length; // পরেরটা
-    slides[currentSlide].classList.add('active'); // নতুনটা শো
-  }, 10000); // 10000ms = 10 সেকেন্ড
+    let diff = Math.floor((new Date()-start)/86400000);
+    document.getElementById('counter').innerText = diff + " Days Together ❤️";
+  },1000);
+}
+// 4. 10 sec পর Pic Change
+let i=0;
+function startSlideshow(){
+  let pics = document.querySelectorAll('.gallery img');
+  setInterval(()=>{
+    pics[i].classList.remove('active');
+    i = (i+1) % pics.length;
+    pics[i].classList.add('active');
+  },10000);
 }
 </script>
 </body>
