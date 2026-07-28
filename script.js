@@ -1,52 +1,53 @@
+const text =
+"Every love story is beautiful, but ours is my favorite. ❤️";
+
+let i = 0;
+const typing = document.getElementById("typing");
+
+function typeEffect() {
+    if (i < text.length) {
+        typing.innerHTML += text.charAt(i);
+        i++;
+        setTimeout(typeEffect, 50);
+    }
+}
+
+typeEffect();
+
+const btn = document.getElementById("openBtn");
+const hero = document.querySelector(".hero");
+const letter = document.getElementById("letter");
+
+btn.onclick = function () {
+    hero.style.display = "none";
+    letter.style.display = "block";
+};
+
 const images = [
-  "images/IMG-20260728-WA0004.jpg",
-  "images/IMG-20260728-WA0005.jpg"
+    "images/IMG-20260728-WA0004.jpg",
+    "images/IMG-20260728-WA0005.jpg"
 ];
+
 let current = 0;
+const slider = document.getElementById("slider");
 
-// PASSCODE
-document.getElementById('unlockBtn').onclick = checkPass;
-function checkPass(){
-  let pass = document.getElementById('passInput').value;
-  if(pass === "8080"){
-    document.getElementById('lockScreen').style.display = 'none';
-    document.getElementById('mainContent').classList.remove('hidden');
-    startHearts(); startCounter(); startSlideshow();
-  }else{ document.getElementById('errorMsg').style.display = 'block'; }
+setInterval(() => {
+    current++;
+    if (current >= images.length) current = 0;
+    slider.src = images[current];
+}, 3000);
+
+const startDate = new Date("September 21, 2022");
+
+function updateCounter() {
+    const now = new Date();
+    const diff = now - startDate;
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+
+    document.getElementById("counter").innerHTML =
+        "❤️ Together for <b>" + days + "</b> Days ❤️";
 }
 
-// OPEN LETTER
-document.getElementById('openBtn').onclick = function(){
-  document.getElementById('letter').classList.remove('hidden');
-  this.style.display='none';
-}
-
-// COUNTER
-function startCounter(){
-  let start = new Date("2022-09-21");
-  setInterval(()=>{
-    let diff = Math.floor((new Date()-start)/86400000)
-    document.getElementById('counter').innerText = diff + " Days Together ❤️"
-  },1000)
-}
-
-// HEARTS
-function startHearts(){
-  setInterval(()=>{
-    let h = document.createElement('div');
-    h.className='heart';
-    h.style.left = Math.random()*100+'%';
-    document.querySelector('.hearts').appendChild(h);
-    setTimeout(()=>h.remove(),6000)
-  },300)
-}
-
-// 10 SEC SLIDESHOW
-function startSlideshow(){
-  let slides = document.querySelectorAll('.gallery img');
-  setInterval(()=>{
-    slides[current].classList.remove('active'); // আগেরটা fade out
-    current = (current + 1) % images.length;
-    slides[current].classList.add('active'); // নতুনটা fade in
-  }, 10000); // 10 সেকেন্ড
-}
+updateCounter();
+setInterval(updateCounter, 1000);
