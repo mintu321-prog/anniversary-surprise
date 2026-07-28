@@ -1,4 +1,48 @@
-const text =
+// PASSCODE CHECK
+function checkPass(){
+  let pass = document.getElementById('passInput').value;
+  if(pass === "8080"){
+    document.getElementById('lockScreen').style.display = 'none';
+    document.getElementById('mainContent').classList.remove('hidden');
+    startHearts(); // হার্ট চালু
+    startCounter(); // কাউন্টার চালু
+  }else{
+    document.getElementById('errorMsg').style.display = 'block';
+  }
+}
+
+// Enter চাপলে কাজ করবে
+document.addEventListener('keypress', function(e){
+  if(e.key === 'Enter' && document.getElementById('lockScreen').style.display !== 'none'){
+    checkPass();
+  }
+})
+
+// তোমার আগের কোড - typing, letter open, counter
+document.getElementById('openBtn').onclick = function(){
+  document.getElementById('letter').classList.remove('hidden');
+  this.style.display='none';
+}
+
+// কাউন্টার 21 Sep 2022 থেকে
+function startCounter(){
+  let start = new Date("2022-09-21");
+  setInterval(()=>{
+    let diff = Math.floor((new Date()-start)/86400000)
+    document.getElementById('counter').innerText = diff + " Days Together ❤️"
+  },1000)
+}
+
+// ভাসমান হার্ট
+function startHearts(){
+  setInterval(()=>{
+    let h = document.createElement('div');
+    h.className='heart';
+    h.style.left = Math.random()*100+'%';
+    document.querySelector('.hearts').appendChild(h);
+    setTimeout(()=>h.remove(),6000)
+  },300)
+              }const text =
 "Every love story is beautiful, but ours is my favorite. ❤️";
 
 let i = 0;
